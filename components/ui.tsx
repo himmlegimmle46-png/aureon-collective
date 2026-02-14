@@ -10,7 +10,7 @@ export function GlowCard({
   return (
     <div
       className={[
-        "relative overflow-hidden rounded-2xl border",
+        "relative rounded-2xl border border-yellow-400/15 bg-white/5 p-6",
         "border-white/10 bg-black/35",
         "shadow-[0_10px_40px_rgba(0,0,0,0.45)]",
         "transition hover:border-yellow-400/20 hover:bg-black/45",
