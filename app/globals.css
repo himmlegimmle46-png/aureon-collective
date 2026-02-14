@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* ===== Theme Variables ===== */
+:root {
+  --bg: 0 0% 5%;
+  --bg2: 0 0% 7%;
+  --gold: 45 92% 55%;
+  --text: 0 0% 96%;
+}
+
+/* ===== Base ===== */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(255, 204, 77, 0.10), transparent 60%),
+    radial-gradient(900px 500px at 80% 10%, rgba(255, 204, 77, 0.08), transparent 55%),
+    linear-gradient(180deg, hsl(var(--bg)) 0%, hsl(var(--bg2)) 100%);
+  color: hsl(var(--text));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(255, 204, 77, 0.25);
+}
+
+/* ===== Smooth transitions ===== */
+a,
+button {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+/* ===== Route/page transition ===== */
+@keyframes routeIn {
+  from { opacity: 0; transform: translateY(14px); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0);  filter: blur(0); }
+}
+.animate-routeIn {
+  animation: routeIn 420ms ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-routeIn { animation: none; }
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); }
+::-webkit-scrollbar-thumb { background: rgba(255,204,77,0.25); border-radius: 999px; }
+
+/* Subtle animated gold glow */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.6;
+  filter: blur(60px);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 204, 77, 0.14), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgba(255, 204, 77, 0.10), transparent 60%),
+    radial-gradient(circle at 60% 80%, rgba(255, 204, 77, 0.08), transparent 60%);
+  animation: aureonGlow 12s ease-in-out infinite alternate;
+}
+
+body::after {
+  opacity: 0.35;
+  filter: blur(90px);
+  animation-duration: 16s;
+}
+
+@keyframes aureonGlow {
+  0%   { transform: translate3d(-2%, -1%, 0) scale(1); }
+  100% { transform: translate3d(2%, 1%, 0) scale(1.03); }
+}
+/* --- Aureon: form control fixes (prevents vertical text clipping) --- */
+input, textarea, select, button {
+  font: inherit;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  line-height: 1.4;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Ensure inputs have enough height for font+padding */
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="password"],
+input[type="number"],
+select {
+  min-height: 42px;
+}
+
+/* Keep textarea comfy */
+textarea {
+  line-height: 1.5;
+}
+
+input, textarea, select, button { font: inherit; }
+input, textarea, select { line-height: 1.4; -webkit-text-size-adjust: 100%; }
+input, select { min-height: 42px; }
+textarea { line-height: 1.5; }
