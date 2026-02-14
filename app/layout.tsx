@@ -7,7 +7,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="min-h-screen bg-black text-white">
         <div className="relative min-h-screen overflow-x-hidden">
-          {/* Subtle global glow (lighter so inner pages don't look "foggy") */}
+          {/* Subtle global glow */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 -z-10"
@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }}
           />
 
-          {/* Subtle vignette (also reduced) */}
+          {/* Subtle vignette */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 -z-10"
@@ -33,8 +33,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="min-h-screen flex flex-col">
             <Navbar />
 
-            {/* Keep consistent spacing; pages can still do their own max-w inside */}
-            <main className="flex-1 w-full px-4 pt-10 pb-16">
+            {/* ✅ FIXED SPACING — prevents navbar clipping */}
+            <main className="flex-1 w-full px-4 pt-16 sm:pt-20 pb-16">
               <RouteTransition>{children}</RouteTransition>
             </main>
 
