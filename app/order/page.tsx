@@ -134,7 +134,7 @@ function OrderInner() {
         </div>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <GlowCard>
           <div className="flex items-center justify-between gap-3">
             <div className="text-sm font-semibold text-yellow-200">Order details</div>
