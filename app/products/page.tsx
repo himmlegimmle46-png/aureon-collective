@@ -26,6 +26,7 @@ export default function ProductsPage() {
         "Belt: Petal Belt",
         "Star Amulet: SSA (Popstar)",
         "Honey: 10T+",
+        "Full access to account (email + password provided after purchase)",
       ],
       discord: "https://discord.gg/knuz3yfWdU",
       discordShort: "discord.gg/knuz3yfWdU",
