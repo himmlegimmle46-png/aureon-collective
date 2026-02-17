@@ -9,8 +9,8 @@ export default function ProductsPage() {
   const [active, setActive] = useState<(typeof PRODUCT.images)[number]>(PRODUCT.images[0]);
 
   const orderHref = `/order?product=${encodeURIComponent(PRODUCT.name)}&price=${encodeURIComponent(
-    PRODUCT.priceValue
-  )}`;
+  PRODUCT.priceLabel
+)}`;
 
   const { badgeClasses, dotClass, label } = stockBadge();
 

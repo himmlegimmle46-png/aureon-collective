@@ -6,8 +6,8 @@ export default function HomePage() {
   const { badgeClasses, dotClass, label } = stockBadge();
 
   const orderHref = `/order?product=${encodeURIComponent(PRODUCT.name)}&price=${encodeURIComponent(
-    PRODUCT.priceValue
-  )}`;
+  PRODUCT.priceLabel
+)}`;
 
   return (
     <div className="relative">
