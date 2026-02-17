@@ -10,11 +10,11 @@ export default function ProductsPage() {
 
   const PRODUCT = useMemo(
     () => ({
-      name: "Bee Swarm Account (Tad alt)",
+      name: "Bee Swarm Account (Blue Hive)",
       priceLabel: "$60",
       priceValue: "$60", // IMPORTANT: keep this numeric for query param
       description:
-        "Tad Alt Bee Swarm Account. After ordering, join the Discord and open a ticket to continue.",
+        "Blue Hive Bee Swarm Account. After ordering, join the Discord and open a ticket to continue.",
       images: ["/product-1.png", "/product-2.png"] as const,
       specs: [
         "Hive lvl: 16",

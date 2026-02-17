@@ -179,7 +179,7 @@ function OrderInner() {
                 value={contact}
                 onChange={(e) => setContact(e.target.value)}
                 className={inputCls}
-                placeholder="email@example.com or discord user"
+                placeholder="email@example.com and discord user"
               />
             </Field>
 

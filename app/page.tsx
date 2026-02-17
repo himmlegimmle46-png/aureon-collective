@@ -106,7 +106,7 @@ export default function HomePage() {
 
               <div className="flex flex-wrap gap-2">
                 <GlowButton href="/products">View listing</GlowButton>
-                <GlowButton href="/order?product=Bee%20Swarm%20Account%20(Tad%20alt)&price=60" variant="ghost">
+                <GlowButton href="/order?product=Bee%20Swarm%20Account%20(Blue%Hive20)&price=60" variant="ghost">
                   Start order
                 </GlowButton>
               </div>
