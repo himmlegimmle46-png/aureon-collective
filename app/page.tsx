@@ -1,7 +1,14 @@
 import Link from "next/link";
 import { GlowCard, GlowButton, PageTitle } from "@/components/ui";
+import { PRODUCT, IN_STOCK, STOCK_COUNT, stockBadge } from "../lib/product";
 
 export default function HomePage() {
+  const { badgeClasses, dotClass, label } = stockBadge();
+
+  const orderHref = `/order?product=${encodeURIComponent(PRODUCT.name)}&price=${encodeURIComponent(
+    PRODUCT.priceValue
+  )}`;
+
   return (
     <div className="relative">
       {/* Background glow */}
@@ -73,19 +80,27 @@ export default function HomePage() {
             <div className="p-6 sm:p-8 grid gap-5">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="text-lg font-semibold text-white">Bee Swarm Account (Blue Hive)</div>
+                  <div className="text-lg font-semibold text-white">{PRODUCT.name}</div>
                   <div className="mt-1 text-sm text-white/60">
                     View details, images, and specs on the product page.
                   </div>
                 </div>
+
                 <div className="shrink-0 text-right">
                   <div className="rounded-full border border-yellow-400/20 bg-yellow-400/10 px-3 py-1 text-xs text-yellow-200">
-                    $60
+                    {PRODUCT.priceLabel}
                   </div>
-                  <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-red-400/25 bg-red-400/10 px-3 py-1 text-xs text-red-200">
-                    <span className="h-2 w-2 rounded-full bg-emerald-300" />
-                    In Stock
-                  </div> 
+
+                  {/* ✅ AUTO: text + border/bg/text + dot */}
+                  <div
+                    className={[
+                      "mt-2 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs",
+                      badgeClasses,
+                    ].join(" ")}
+                  >
+                    <span className={["h-2 w-2 rounded-full", dotClass].join(" ")} />
+                    {label}
+                  </div>
                 </div>
               </div>
 
@@ -106,9 +121,20 @@ export default function HomePage() {
 
               <div className="flex flex-wrap gap-2">
                 <GlowButton href="/products">View listing</GlowButton>
-                <GlowButton href="/order?product=Bee%20Swarm%20Account%20(Blue%Hive20)&price=60" variant="ghost">
-                  Start order
-                </GlowButton>
+
+                {IN_STOCK ? (
+                  <GlowButton href={orderHref} variant="ghost">
+                    Start order
+                  </GlowButton>
+                ) : (
+                  <button
+                    className="inline-flex cursor-not-allowed items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/60"
+                    disabled
+                    title={`Out of stock (${STOCK_COUNT})`}
+                  >
+                    Out of stock ({STOCK_COUNT})
+                  </button>
+                )}
               </div>
             </div>
           </GlowCard>
@@ -136,7 +162,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* spacing so footer never feels “cut off” */}
         <div className="h-10" />
       </div>
     </div>

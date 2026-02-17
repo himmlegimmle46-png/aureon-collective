@@ -1,44 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { GlowCard, GlowButton, PageTitle } from "../../components/ui";
+import { PRODUCT, STOCK_COUNT, IN_STOCK, stockBadge } from "../../lib/product";
 
 export default function ProductsPage() {
-  const STOCK_COUNT = 4;
-  const IN_STOCK = STOCK_COUNT > 1; // show "In Stock" if more than 1, to avoid confusion when only 1 left
-
-  const PRODUCT = useMemo(
-    () => ({
-      name: "Bee Swarm Account (Blue Hive)",
-      priceLabel: "$60",
-      priceValue: "$60", // IMPORTANT: keep this numeric for query param
-      description:
-        "Blue Hive Bee Swarm Account. After ordering, join the Discord and open a ticket to continue.",
-      images: ["/product-1.png", "/product-2.png"] as const,
-      specs: [
-        "Hive lvl: 16",
-        "Bees: 50",
-        "Guards: Endgame",
-        "Mask: Diamond Mask",
-        "Bag: Coconut Canister",
-        "Tool: Petal Wand",
-        "Belt: Petal Belt",
-        "Star Amulet: SSA (Popstar)",
-        "Honey: 10T+",
-        "Full access to account (no email linked + password provided after purchase)",
-      ],
-      discord: "https://discord.gg/knuz3yfWdU",
-      discordShort: "discord.gg/knuz3yfWdU",
-    }),
-    []
-  );
-
   const [active, setActive] = useState<(typeof PRODUCT.images)[number]>(PRODUCT.images[0]);
 
   const orderHref = `/order?product=${encodeURIComponent(PRODUCT.name)}&price=${encodeURIComponent(
     PRODUCT.priceValue
   )}`;
+
+  const { badgeClasses, dotClass, label } = stockBadge();
 
   return (
     <div className="mx-auto w-full max-w-6xl">
@@ -59,7 +33,7 @@ export default function ProductsPage() {
 
                 {/* Thumbnails */}
                 <div className="grid grid-cols-2 gap-3">
-                  {PRODUCT.images.map((src) => {
+                  {PRODUCT.images.map((src: (typeof PRODUCT.images)[number]) => {
                     const isActive = active === src;
                     return (
                       <button
@@ -105,16 +79,15 @@ export default function ProductsPage() {
                     {PRODUCT.priceLabel}
                   </div>
 
+                  {/* ✅ AUTO: text + border/bg/text + dot */}
                   <div
                     className={[
                       "mt-2 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs border",
-                      IN_STOCK
-                        ? "border-emerald-400/25 bg-emerald-400/10 text-emerald-200"
-                        : "border-red-400/25 bg-red-400/10 text-red-200",
+                      badgeClasses,
                     ].join(" ")}
                   >
-                    <span className={["h-2 w-2 rounded-full", IN_STOCK ? "bg-emerald-300" : "bg-red-300"].join(" ")} />
-                    {IN_STOCK ? `In Stock (${STOCK_COUNT})` : "Out of Stock"}
+                    <span className={["h-2 w-2 rounded-full", dotClass].join(" ")} />
+                    {label}
                   </div>
                 </div>
               </div>
@@ -123,7 +96,7 @@ export default function ProductsPage() {
               <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
                 <div className="text-sm font-semibold text-yellow-200">Specs</div>
                 <ul className="mt-3 grid gap-1.5 text-sm text-white/70">
-                  {PRODUCT.specs.map((s) => (
+                  {PRODUCT.specs.map((s: (typeof PRODUCT.specs)[number]) => (
                     <li key={s} className="flex gap-2">
                       <span className="text-yellow-200/80">•</span>
                       <span>{s}</span>
