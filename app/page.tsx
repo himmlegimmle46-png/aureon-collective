@@ -73,7 +73,7 @@ export default function HomePage() {
             <div className="p-6 sm:p-8 grid gap-5">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="text-lg font-semibold text-white">Bee Swarm Account (Tad alt)</div>
+                  <div className="text-lg font-semibold text-white">Bee Swarm Account (Blue Hive)</div>
                   <div className="mt-1 text-sm text-white/60">
                     View details, images, and specs on the product page.
                   </div>

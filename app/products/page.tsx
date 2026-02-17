@@ -5,8 +5,8 @@ import { useMemo, useState } from "react";
 import { GlowCard, GlowButton, PageTitle } from "../../components/ui";
 
 export default function ProductsPage() {
-  const STOCK_COUNT = 0;
-  const IN_STOCK = STOCK_COUNT > 0;
+  const STOCK_COUNT = 4;
+  const IN_STOCK = STOCK_COUNT > 1; // show "In Stock" if more than 1, to avoid confusion when only 1 left
 
   const PRODUCT = useMemo(
     () => ({
